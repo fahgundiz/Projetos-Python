@@ -1,0 +1,51 @@
+"""
+Este algoritmo cria um jogo de pedra, papel e tesoura.
+
+Nome:Gabriel Fagundes
+Data: 21/11/2025
+"""
+import random
+PEDRA = 'r'
+PAPEL = 'p'
+TESOURA = 's'
+
+jogadas = {PEDRA:'pedra', PAPEL:'papel',TESOURA:'tesoura'}
+escolhas = tuple(jogadas.keys())
+
+def recebe_escolha_usuario():
+    while True:
+        escolha_usuario = input("Pedra, papel ou tesoura? (r/p/s): ").lower()
+        if escolha_usuario in escolhas:
+            return escolha_usuario
+        else:
+            print("Erro. Escolha inválida!")
+
+def mostrar_escolhas(escolha_usuario, escolha_computador):
+    print(f'Você escolheu {jogadas[escolha_usuario]}')
+    print(f"Computador escolheu {jogadas[escolha_computador]}")
+
+def resultado_jogo(escolha_usuario, escolha_computador):
+    if escolha_usuario == escolha_computador:
+        print("Empate!")
+    elif(
+        (escolha_usuario == PEDRA and escolha_computador == TESOURA) or
+        (escolha_usuario == PAPEL and escolha_computador == PEDRA) or
+        (escolha_usuario == TESOURA and escolha_computador == PAPEL)):
+        print("Você venceu!")
+    else:
+        print("Você perdeu!")
+
+def jogar_jogo():
+    while True:
+        escolha_usuario = recebe_escolha_usuario()
+        escolha_computador = random.choice(escolhas)
+        
+        mostrar_escolhas(escolha_usuario, escolha_computador)
+        resultado_jogo(escolha_usuario, escolha_computador)
+
+        continuar = input("Deseja continuar jogando? (s/n): ").lower()
+        if continuar == 'n':
+            break
+        
+if __name__== "__main__":
+    jogar_jogo()
