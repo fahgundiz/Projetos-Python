@@ -1,0 +1,36 @@
+"""
+Este algoritmo gera uma senha automática.
+
+Nome:Gabriel Fagundes
+Data:08/11/2025
+"""
+import random
+import string
+
+def gerador_senha(tamanho_senha = 8):
+    ascii_opcoes = string.ascii_letters
+    numero_opcoes = string.digits
+    pontuacoes_opcoes = string.punctuation
+    opcoes = ascii_opcoes + numero_opcoes + pontuacoes_opcoes
+
+    senha_usuario = ""
+    for i in range(0,tamanho_senha):
+        digito = random.choice(opcoes)
+        senha_usuario += digito
+    
+    return senha_usuario
+
+while True:
+    tamanho_senha_string = input("Quantos digitos na senha? ")
+    try:
+        tamanho_senha = int(tamanho_senha_string)
+        if tamanho_senha < 8:
+            print("Erro, a senha deve ter pelo menos 8 caracteres!")
+            continue
+        break
+    except ValueError:
+        print("Erro, digite um tamanho válido!")
+        continue
+
+senha = gerador_senha(tamanho_senha = tamanho_senha)
+print("Senha gerada:", senha)
