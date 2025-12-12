@@ -1,0 +1,28 @@
+"""
+Este projeto simula um  temporizador simples.
+
+Nome:Gabriel Fagundes
+Data:08/11/2025
+"""
+import time
+
+while True:
+    tempo_string = input("Digite o tempo (em segundos): ")
+    try:
+        tempo = int(tempo_string)
+        if tempo < 0:
+            print("Erro, digite um tempo positivo!")
+            continue
+        break
+    except ValueError:
+        print("Erro, digite um número inteiro válido!")
+        continue
+
+while tempo:
+    minutos, segundos = divmod(tempo,60)
+    timer = "{:02d}:{:02d}".format(minutos, segundos)
+    print(timer, end= "\r")
+    time.sleep(1)
+    tempo -= 1
+
+print("Tempo acabou!")
